@@ -1,15 +1,20 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import typeDefs from "./gql/schema.js";
-import resolvers from "./gql/resolver.js";
+import typeDefs from "./graphql/schema.js";
+import resolvers from "./graphql/resolver.js";
 import connectDB from "./config/db.js";
-import { testDatabase } from "./utils/helper.js";
+import { testDatabase, clearCart } from "./utils/helper.js";
+import reset from "./utils/reset.js";
 
 // connect to database
 connectDB();
 
+// reset database
+// reset();
+
+// clearCart();
 // test database
-testDatabase();
+// testDatabase();
 
 const server = new ApolloServer({
   //typeDefs
