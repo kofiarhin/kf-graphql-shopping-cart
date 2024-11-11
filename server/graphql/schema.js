@@ -6,6 +6,8 @@ const typeDefs = `#graphql
         email: String
         password: String
     }
+
+    
     type Product {
         _id: String
         name: String!
@@ -22,8 +24,6 @@ const typeDefs = `#graphql
     product_id: ID!
     quantity: Int!
   }
-
-    
 
    type CartItem {
     product_id: ID,
