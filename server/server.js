@@ -5,6 +5,8 @@ import resolvers from "./graphql/resolver.js";
 import connectDB from "./config/db.js";
 import { testDatabase, clearCart } from "./utils/helper.js";
 import reset from "./utils/reset.js";
+import jwt from "jsonwebtoken";
+import User from "./models/userModel.js";
 
 // connect to database
 connectDB();
@@ -24,6 +26,22 @@ const server = new ApolloServer({
 });
 
 const { uri } = await startStandaloneServer(server, {
+  context: async ({ req }) => {
+    if (req.headers?.authorization) {
+      const token = req.headers.authorization;
+      try {
+        const { id } = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(id);
+        const user = await User.findById(id);
+        const { password, ...rest } = user._doc;
+
+        return { user: { ...rest } };
+      } catch (error) {
+        console.log(error.message);
+        return null;
+      }
+    }
+  },
   listen: { port: process.env.PORT || 5000 },
 });
 

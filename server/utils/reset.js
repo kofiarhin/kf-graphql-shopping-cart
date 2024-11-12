@@ -2,6 +2,8 @@ import Product from "../models/productModel.js";
 import User from "../models/userModel.js";
 import users from "./data/users.js";
 import products from "./data/products.js";
+import Cart from "../models/cartModel.js";
+import Order from "../models/orderModel.js";
 import bcrypt from "bcryptjs";
 
 const reset = async () => {
@@ -10,6 +12,12 @@ const reset = async () => {
 
   //   delete Products
   await Product.deleteMany();
+
+  // delete orders
+  await Order.deleteMany();
+
+  // delete cart
+  await Cart.deleteMany();
 
   //   create users
   await Promise.all(

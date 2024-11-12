@@ -6,6 +6,7 @@ import products from "./data/products.js";
 import users from "./data/users.js";
 import User from "../models/userModel.js";
 import Cart from "../models/cartModel.js";
+import jwt from "jsonwebtoken";
 // test database
 export const testDatabase = async () => {
   const products = await Product.find();
@@ -18,4 +19,8 @@ export const clearCart = async () => {
 
 export const readFile = async () => {
   console.log(users);
+};
+
+export const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
