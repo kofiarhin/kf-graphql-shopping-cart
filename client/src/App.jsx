@@ -1,24 +1,22 @@
-import { useQuery } from "@apollo/client";
-import { GET_PRODUCTS } from "./graphql/queries";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { productSuccess, reset } from "./redux/product/productSlice";
-import ProductList from "./components/ProductList/ProductList";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
+import Header from "./components/Header/Header";
+import Profile from "./Pages/Profile/Profile";
 const App = () => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (data?.products) {
-      dispatch(productSuccess(data.products));
-    }
-    dispatch(reset());
-  }, [data]);
-  console.log(data);
   return (
-    <div>
-      <ProductList />
-    </div>
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 
