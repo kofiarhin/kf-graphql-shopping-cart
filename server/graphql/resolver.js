@@ -62,6 +62,20 @@ const resolvers = {
     },
   },
   Mutation: {
+    // register user
+    registerUser: async (_, args) => {
+      const { name, email, password } = args.registerUserInput;
+
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const user = await User.create({
+        name,
+        email,
+        password: hashedPassword,
+      });
+      const { password: userPassword, ...rest } = user._doc;
+      return { ...rest };
+    },
     // login user
     loginUser: async (_, args) => {
       const { email, password } = args.loginUserInput;

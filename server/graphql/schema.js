@@ -93,7 +93,17 @@ type OrderItem {
     quantity: Int!
   }
 
+  input RegisterUserInput {
+    _id: ID
+    name: String!
+    email: String!
+    password: String
+  }
+
     type Mutation {
+
+      #register user
+      registerUser(registerUserInput: RegisterUserInput) : User
 
       #login user
       loginUser(loginUserInput: LoginUserInput) : Login
