@@ -4,6 +4,7 @@ import { CREATE_ORDER } from "../../graphql/mutations";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../redux/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { setMessage } from "../../redux/message/messageSlice";
 
 // place order
 const PlaceOrderButton = () => {
@@ -36,6 +37,7 @@ const PlaceOrderButton = () => {
         },
       });
       dispatch(clearCart("order placed thank you!"));
+      dispatch(setMessage("order has been placed sucessfully"));
       navigate("/success");
     } catch (error) {
       console.log(error.message);

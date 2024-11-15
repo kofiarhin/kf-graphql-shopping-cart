@@ -46,4 +46,29 @@ const CREATE_ORDER = gql`
     }
   }
 `;
-export { LOGIN_USER, REGISTER_USER, ADD_TO_CART, CREATE_ORDER };
+
+const DELETE_CART_ITEM = gql`
+  mutation DeleteCartItemMutaiton($product_id: ID!) {
+    deleteCartItem(product_id: $product_id) {
+      user_id
+      products {
+        quantity
+        product_id
+        product {
+          _id
+          name
+          description
+          price
+          img
+        }
+      }
+    }
+  }
+`;
+export {
+  LOGIN_USER,
+  REGISTER_USER,
+  ADD_TO_CART,
+  CREATE_ORDER,
+  DELETE_CART_ITEM,
+};

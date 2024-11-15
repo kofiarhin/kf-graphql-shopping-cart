@@ -1,23 +1,15 @@
 import "./cartList.styles.scss";
+import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const CartList = ({ data }) => {
+  useEffect(() => {}, [data]);
   return (
     <div>
       <div className="cart-wrapper">
         {data.map((item) => {
-          return (
-            <div key={item.product_id} className="cart-unit">
-              <Link to={`/products/${item.product_id}`}>
-                <img src={item.product.img} alt="" />
-              </Link>
-              <Link to={`/products/${item.product_id}`}>
-                {" "}
-                <p> {item.product.name} </p>
-                <p>Quantity: {item.quantity} </p>
-              </Link>
-            </div>
-          );
+          return <CartItem item={item} key={item.product_id} />;
         })}
       </div>
     </div>
