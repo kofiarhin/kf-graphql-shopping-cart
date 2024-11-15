@@ -1,1 +1,2 @@
-#GRAPHQL SHOPPING CART APP
+# A Simple GraPHQl shopping cart
+
