@@ -56,7 +56,6 @@ const resolvers = {
 
       const { _id: user_id } = context.user;
 
-      console.log("xxxx", user_id);
       const orders = await Order.find({ user_id });
       return orders;
     },
@@ -148,6 +147,9 @@ const resolvers = {
 
       const { _id: user_id } = context.user;
       const { orderItems } = args.createOrderInput;
+
+      // clear cart
+      await Cart.findOneAndDelete({ user_id });
 
       const order = await Order.create({
         user_id,

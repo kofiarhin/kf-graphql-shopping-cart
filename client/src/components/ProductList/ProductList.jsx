@@ -1,15 +1,21 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import "./productList.styles.scss";
 
 const ProductList = () => {
   const { products } = useSelector((state) => state.product);
 
   return (
-    <div>
-      <h1 className="heading">Product List</h1>
+    <div className="product-container">
       {products.map((product) => (
         <div key={product._id}>
-          <p>{product.name}</p>
-          <img src={product.img} alt="" />
+          <Link to={`/products/${product._id}`}>
+            <img src={product.img} alt="" />
+          </Link>
+          <Link to={`/products/${product._id}`}>
+            <p>{product.name}</p>
+          </Link>
+          <p> £{product.price.toFixed(2)} </p>
         </div>
       ))}
     </div>

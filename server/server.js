@@ -31,7 +31,6 @@ const { uri } = await startStandaloneServer(server, {
       const token = req.headers.authorization;
       try {
         const { id } = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(id);
         const user = await User.findById(id);
         const { password, ...rest } = user._doc;
 

@@ -34,7 +34,7 @@ type OrderItem {
   product: Product
 }
   type Order {
-    _id: ID!
+    _id: ID
     user_id: String!
     user: User
     orderItems: [OrderItem!]!
@@ -50,7 +50,7 @@ type OrderItem {
         product(id: ID!): Product
 
         # cart query
-        cart(user_id: ID!): Cart
+        cart: Cart
         carts: [Cart]
 
         # orders

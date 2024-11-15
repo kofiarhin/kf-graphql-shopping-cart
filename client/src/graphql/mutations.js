@@ -20,4 +20,30 @@ const REGISTER_USER = gql`
   }
 `;
 
-export { LOGIN_USER, REGISTER_USER };
+const ADD_TO_CART = gql`
+  mutation AddToCartMutation($addToCartInput: AddToCartInput) {
+    addToCart(addToCartInput: $addToCartInput) {
+      user_id
+      products {
+        product_id
+        product {
+          _id
+          name
+          description
+          price
+        }
+      }
+    }
+  }
+`;
+const CREATE_ORDER = gql`
+  mutation CreateOrderMutation($createOrderInput: CreateOrderInput) {
+    createOrder(createOrderInput: $createOrderInput) {
+      user_id
+      orderItems {
+        product_id
+      }
+    }
+  }
+`;
+export { LOGIN_USER, REGISTER_USER, ADD_TO_CART, CREATE_ORDER };

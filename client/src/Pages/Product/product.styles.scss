@@ -1,0 +1,30 @@
+$green: #006637;
+
+.product-wrapper {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  gap: 20px;
+
+  button {
+    display: block;
+    padding: 0.5rem 2rem;
+    background-color: $green;
+    color: white;
+    cursor: pointer;
+  }
+  .input-wrapper {
+    margin: 1rem 0rem 2rem 0rem;
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+  select,
+  input {
+    width: 200px;
+    display: block;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0rem;
+    text-indent: 20px;
+  }
+}

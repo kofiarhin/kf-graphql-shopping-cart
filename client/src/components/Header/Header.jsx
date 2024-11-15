@@ -8,6 +8,7 @@ import "./header.styles.scss";
 const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -21,9 +22,12 @@ const Header = () => {
         </Link>
 
         <nav>
+          <Link to="/">Home</Link>
           {user ? (
             <>
-              <Link to="/cart">Cart</Link>
+              <Link to="/cart">
+                Cart <span> ({cart ? cart.length : null}) </span>{" "}
+              </Link>
               <Link to="/orders">Orders</Link>
               <button onClick={handleLogout}>Logout</button>
             </>
