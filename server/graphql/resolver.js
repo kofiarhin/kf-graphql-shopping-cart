@@ -101,6 +101,20 @@ const resolvers = {
       const { password: userPasswowrd, ...rest } = user._doc;
       return { ...rest, token };
     },
+    deleteCartItem: async (_, args, context) => {
+      const { _id: user_id } = context.user;
+      const { product_id } = args;
+      const cart = await Cart.updateOne(
+        { user_id },
+        {
+          $pull: { products: { product_id } },
+        },
+        { new: true }
+      );
+
+      const updatedCart = await Cart.findOne({ user_id });
+      return updatedCart;
+    },
     addToCart: async (_, args, context) => {
       if (!context.user) {
         throw new GraphQLError("you are not authorized", {

@@ -99,6 +99,8 @@ type OrderItem {
     email: String!
     password: String
   }
+  
+  
 
     type Mutation {
 
@@ -109,6 +111,7 @@ type OrderItem {
       loginUser(loginUserInput: LoginUserInput) : Login
         # cart mutation
         addToCart(addToCartInput: AddToCartInput): Cart
+        deleteCartItem(product_id: ID!): Cart
 
         # order mutation
         createOrder(createOrderInput: CreateOrderInput): Order
